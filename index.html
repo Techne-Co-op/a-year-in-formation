@@ -35,30 +35,30 @@
     --ok:#4A7A4A; --info:#4A6FB0; --warn:#A84F4C;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg); color:var(--text); font:400 15.5px/1.75 var(--serif)}
+  body{background:var(--bg); color:var(--text); font:400 15px/1.65 var(--serif)}
   a{color:var(--blue-text); text-decoration:none}
   a:hover{text-decoration:underline}
   em{color:var(--heading)}
   .mono{font-family:var(--mono)}
   :focus-visible{outline:2px solid var(--blue); outline-offset:2px}
 
-  .frame{max-width:920px; margin:0 auto; padding:0 22px; width:100%}
+  .frame{max-width:1180px; margin:0 auto; padding:0 clamp(18px,3vw,40px); width:100%}
 
   .topbar{border-bottom:1px solid var(--line)}
-  .topbar .frame{display:flex; justify-content:space-between; align-items:center; padding-top:14px; padding-bottom:10px}
-  .topbar .bc{font:400 11.5px var(--mono); color:var(--muted)}
+  .topbar .frame{display:flex; justify-content:space-between; align-items:center; padding-top:12px; padding-bottom:9px}
+  .topbar .bc{font:400 11px var(--mono); color:var(--muted)}
   .topbar .bc a{color:var(--ember-text)}
-  .mode-btn{font:400 11.5px var(--mono); color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:2px; padding:4px 10px; cursor:pointer}
+  .mode-btn{font:400 11px var(--mono); color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:2px; padding:4px 10px; cursor:pointer}
   .mode-btn:hover{background:var(--raised); color:var(--heading)}
 
-  .chip{display:inline-flex; align-items:center; gap:6px; font:400 10.5px var(--mono); border:1px solid var(--line); border-radius:2px; padding:2px 8px; color:var(--muted); white-space:nowrap}
+  .chip{display:inline-flex; align-items:center; gap:6px; font:400 10px var(--mono); border:1px solid var(--line); border-radius:2px; padding:2px 8px; color:var(--muted); white-space:nowrap}
   .chip::before{content:""; width:7px; height:7px; flex:none; background:var(--faint)}
   .chip.ok{color:var(--ok); border-color:var(--ok)} .chip.ok::before{background:var(--ok)}
   .chip.warn{color:var(--warn); border-color:var(--warn)} .chip.warn::before{background:transparent; border:1px solid var(--warn)}
   .chip.neutral::before{background:transparent; border:1px solid var(--muted)}
 
-  /* ---- views: a plain flowing document without script; pages with it ---- */
-  .view{padding:40px 0}
+  /* ---- views: flowing document without script; no-scroll pages with it ---- */
+  .view{padding:44px 0}
   .view + .view{border-top:1px solid var(--line)}
 
   html.paged body{height:100dvh; overflow:hidden; display:flex; flex-direction:column}
@@ -70,10 +70,9 @@
     transition:opacity .5s cubic-bezier(.4,0,.2,1), transform .5s cubic-bezier(.4,0,.2,1), visibility 0s linear .5s}
   html.paged[data-dir="back"] .view{transform:translateX(-36px)}
   html.paged .view.active{opacity:1; visibility:visible; pointer-events:auto; transform:none; transition-delay:0s}
-  html.paged .view-inner{min-height:100%; display:flex; flex-direction:column; justify-content:center; padding-top:34px; padding-bottom:44px}
+  html.paged .view-inner{min-height:100%; display:flex; flex-direction:column; justify-content:center; padding-top:18px; padding-bottom:22px}
   @media (prefers-reduced-motion:reduce){ html.paged .view{transition:none; transform:none} }
 
-  /* staggered arrival of a view's parts; delays set by script per page turn */
   html.paged .rv{opacity:0; transform:translateY(12px)}
   html.paged .view.active .rv{opacity:1; transform:none; transition:opacity .55s cubic-bezier(.4,0,.2,1), transform .55s cubic-bezier(.4,0,.2,1)}
   @media (prefers-reduced-motion:reduce){ html.paged .rv{opacity:1; transform:none} html.paged .view.active .rv{transition:none} }
@@ -81,60 +80,73 @@
   /* ---- pager ---- */
   .pager{display:none}
   html.paged .pager{display:block; flex:none; border-top:1px solid var(--line)}
-  html.paged .pager .frame{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-top:12px; padding-bottom:14px}
+  html.paged .pager .frame{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-top:10px; padding-bottom:12px}
   .pager .arrow{font:400 15px/1 var(--mono); color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:2px;
-    padding:9px 18px; cursor:pointer; transition:color .16s, border-color .16s}
+    padding:8px 18px; cursor:pointer; transition:color .16s, border-color .16s}
   .pager .arrow:hover{color:var(--heading); border-color:var(--rule)}
   .pager .arrow[disabled]{opacity:.35; cursor:default}
-  .pager .arrow[disabled]:hover{color:var(--muted); border-color:var(--line)}
-  .pager .mid{display:flex; flex-direction:column; align-items:center; gap:7px; min-width:0}
-  .pager .where{font:400 10.5px var(--mono); color:var(--muted); letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:60vw}
+  .pager .mid{display:flex; flex-direction:column; align-items:center; gap:6px; min-width:0}
+  .pager .where{font:400 10px var(--mono); color:var(--muted); letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:60vw}
   .pager .dots{display:flex; gap:8px}
   .pager .dot{width:8px; height:8px; border:1px solid var(--faint); border-radius:1px; background:transparent; cursor:pointer; padding:0}
   .pager .dot:hover{border-color:var(--heading)}
   .pager .dot.on{background:var(--ember); border-color:var(--ember)}
 
-  /* ---- content grammar ---- */
-  .hero .kicker{font:500 11px var(--mono); color:var(--ember-text); letter-spacing:.14em; text-transform:uppercase}
-  .hero h1{font:400 42px/1.18 var(--serif); color:var(--heading); margin:14px 0 18px; max-width:18ch}
-  .hero .dek{font:400 17.5px/1.7 var(--serif); max-width:58ch; color:var(--text)}
-  .hero .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px}
-
-  .sec .addr{font:500 11px var(--mono); letter-spacing:.12em; text-transform:uppercase; margin-bottom:10px}
+  /* ---- shared slide grammar ---- */
+  .addr{font:500 10.5px var(--mono); letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px}
   .sec[data-tint="gold"] .addr{color:var(--gold)}
   .sec[data-tint="amber"] .addr{color:var(--amber)}
   .sec[data-tint="coral"] .addr{color:var(--coral)}
   .sec[data-tint="rose"] .addr{color:var(--rose)}
   .sec[data-tint="violet"] .addr{color:var(--violet)}
   .sec[data-tint="twilight"] .addr{color:var(--twilight)}
-  .sec h2{font:400 26px/1.3 var(--serif); color:var(--heading); margin-bottom:16px; max-width:30ch}
-  .sec p{margin:0 0 15px; max-width:66ch}
-  .sec p:last-child{margin-bottom:0}
-  .pull{font:400 19px/1.6 var(--serif); color:var(--heading); border-left:3px solid var(--ember); padding:6px 0 6px 20px; margin:24px 0; max-width:56ch}
-  .pull .who{display:block; font:400 11px var(--mono); color:var(--muted); margin-top:8px; letter-spacing:.06em}
+  h2{font:400 clamp(22px,2.6vw,30px)/1.25 var(--serif); color:var(--heading); margin-bottom:12px; max-width:34ch}
+  .lede{font:400 clamp(13px,1.25vw,15.5px)/1.65 var(--serif); max-width:64ch; color:var(--text)}
+  .cap{font:400 clamp(12px,1.1vw,13.5px)/1.6 var(--serif); color:var(--muted); max-width:70ch; margin-top:14px}
 
-  .ladder{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin:28px 0}
-  .rung{background:var(--surface); padding:18px 14px 14px; text-align:center}
-  .rung .n{font:500 34px/1 var(--mono); color:var(--heading); display:block}
-  .rung .l{font:400 10.5px var(--mono); color:var(--muted); letter-spacing:.08em; text-transform:uppercase; display:block; margin-top:8px}
-  .rung:nth-child(1) .n{color:var(--gold)} .rung:nth-child(2) .n{color:var(--amber)}
-  .rung:nth-child(3) .n{color:var(--coral)} .rung:nth-child(4) .n{color:var(--rose)}
-  .rung:nth-child(5) .n{color:var(--rose)} .rung:nth-child(6) .n{color:var(--violet)}
-  .rung:nth-child(7) .n{color:var(--twilight)} .rung:nth-child(8) .n{color:var(--blue-text)}
+  /* slide 1 · hero with the year underline */
+  .hero .kicker{font:500 11px var(--mono); color:var(--ember-text); letter-spacing:.16em; text-transform:uppercase}
+  .hero h1{font:400 clamp(38px,6vw,72px)/1.1 var(--serif); color:var(--heading); margin:12px 0 14px}
+  .hero .dek{font:400 clamp(14px,1.5vw,18px)/1.65 var(--serif); max-width:56ch}
+  .hero .meta{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 0}
+  .yeartrack{position:relative; margin-top:clamp(22px,5vh,48px); height:58px}
+  .yeartrack .rail{position:absolute; left:0; right:0; top:26px; height:2px; background:var(--rule); transform-origin:left; transform:scaleX(0); transition:transform 1.6s cubic-bezier(.4,0,.2,1) .3s}
+  html.paged .view.active .yeartrack .rail{transform:scaleX(1)}
+  html:not(.paged) .yeartrack .rail{transform:scaleX(1)}
+  .yeartrack .tick{position:absolute; top:20px; width:2px; height:14px}
+  .yeartrack .tick i{position:absolute; top:22px; left:50%; transform:translateX(-50%); font:400 9.5px var(--mono); font-style:normal; color:var(--muted); letter-spacing:.08em; white-space:nowrap}
+  @media (prefers-reduced-motion:reduce){ .yeartrack .rail{transform:scaleX(1); transition:none} }
 
-  .tl{position:relative; margin:34px 0 8px; padding-left:26px}
-  .tl::before{content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:var(--rule)}
-  .beat{position:relative; padding:0 0 30px}
-  .beat::before{content:""; position:absolute; left:-25px; top:7px; width:10px; height:10px; background:var(--bg); border:2px solid var(--tint,var(--ember)); border-radius:1px}
-  .beat .when{font:500 11px var(--mono); color:var(--tint,var(--ember-text)); letter-spacing:.1em; text-transform:uppercase}
-  .beat h3{font:400 18px/1.4 var(--serif); color:var(--heading); margin:4px 0 6px}
-  .beat p{font-size:14px; max-width:62ch; color:var(--text)}
-  .beat.await::before{border-style:dashed; border-color:var(--warn)}
-  .beat.await h3{color:var(--muted); font-style:italic}
-  .beat .chip{margin-top:6px}
+  /* slide 2 · the ground stack */
+  .split{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,4fr); gap:clamp(24px,4vw,64px); align-items:center}
+  .ground{display:flex; flex-direction:column-reverse; gap:6px; max-width:440px; width:100%; margin:0 auto}
+  .slab{border:1px solid var(--line); background:var(--surface); padding:10px 14px; text-align:center; font:400 11px var(--mono); letter-spacing:.1em; text-transform:uppercase}
+  .slab b{display:block; font:400 clamp(14px,1.4vw,17px)/1.3 var(--serif); letter-spacing:0; text-transform:none; color:var(--heading); margin-top:2px}
+  .slab.s1{border-left:3px solid var(--gold); color:var(--gold); width:100%}
+  .slab.s2{border-left:3px solid var(--amber); color:var(--amber); width:88%; margin:0 auto}
+  .slab.s3{border-left:3px solid var(--coral); color:var(--coral); width:74%; margin:0 auto}
+  .slab.s4{border-left:3px solid var(--rose); color:var(--rose); width:58%; margin:0 auto; border-style:dashed}
+  .ground .note{font:400 10px var(--mono); color:var(--faint); text-align:center; letter-spacing:.08em; text-transform:uppercase; margin-top:4px}
 
-  .ikigai-row{display:grid; grid-template-columns:minmax(0,380px) 1fr; gap:34px; align-items:center; margin:26px 0}
-  .ikigai-svg{width:100%; height:auto; display:block}
+  /* slide 3 · the horizontal year */
+  .hyear{position:relative; margin-top:clamp(18px,4vh,40px)}
+  .hyear .rail{position:absolute; left:2%; right:2%; top:50%; height:2px; background:var(--rule)}
+  .hgrid{display:grid; grid-template-columns:repeat(8,1fr); position:relative; min-height:clamp(230px,42vh,330px)}
+  .hbeat{position:relative; padding:0 6px; display:flex; flex-direction:column; justify-content:flex-end; text-align:center}
+  .hbeat:nth-child(even){justify-content:flex-start}
+  .hbeat .node{position:absolute; left:50%; top:50%; width:12px; height:12px; transform:translate(-50%,-50%); background:var(--bg); border:2px solid var(--tint,var(--ember)); border-radius:1px; z-index:1}
+  .hbeat.await .node{border-style:dashed; border-color:var(--warn)}
+  .hbeat .cell{padding:0 0 26px}
+  .hbeat:nth-child(even) .cell{padding:26px 0 0}
+  .hbeat .when{display:block; font:500 9.5px var(--mono); color:var(--tint,var(--ember-text)); letter-spacing:.1em; text-transform:uppercase}
+  .hbeat h3{font:400 clamp(12.5px,1.2vw,15px)/1.35 var(--serif); color:var(--heading); margin:3px 0 4px}
+  .hbeat p{font:400 clamp(10.5px,.95vw,12px)/1.5 var(--serif); color:var(--muted)}
+  .hbeat.await h3{color:var(--muted); font-style:italic}
+  .hbeat.await .hold{font:400 9.5px var(--mono); color:var(--warn); letter-spacing:.06em}
+
+  /* slide 4 · ikigai */
+  .ikigai-row{display:grid; grid-template-columns:minmax(0,4fr) minmax(0,5fr); gap:clamp(24px,4vw,60px); align-items:center; margin-top:8px}
+  .ikigai-svg{width:100%; max-height:min(52vh,470px); height:auto; display:block; margin:0 auto}
   .ikigai-svg circle{fill-opacity:.14; stroke-width:1.2; transition:opacity 1s cubic-bezier(.4,0,.2,1)}
   html.paged .ikigai-svg circle{opacity:0}
   html.paged .view.active .ikigai-svg circle{opacity:1}
@@ -145,32 +157,76 @@
   @media (prefers-reduced-motion:reduce){ html.paged .ikigai-svg circle{opacity:1; transition:none} }
   .ikigai-svg text{font-family:var(--mono); font-size:8.5px; fill:var(--muted)}
   .ikigai-svg .core{font-size:9.5px; fill:var(--heading)}
+  .pull{font:400 clamp(15px,1.6vw,20px)/1.55 var(--serif); color:var(--heading); border-left:3px solid var(--ember); padding:6px 0 6px 20px; margin:18px 0 0; max-width:56ch}
+  .pull .who{display:block; font:400 10.5px var(--mono); color:var(--muted); margin-top:8px; letter-spacing:.06em}
 
-  .duet{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); margin:26px 0}
-  .voice{background:var(--surface); padding:22px 20px}
-  .voice .vk{font:500 10.5px var(--mono); letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:8px}
-  .voice:first-child .vk{color:var(--amber)}
-  .voice:last-child .vk{color:var(--twilight)}
-  .voice h3{font:400 20px/1.3 var(--serif); color:var(--heading); margin-bottom:8px}
-  .voice p{font-size:13.5px; max-width:44ch}
+  /* slide 5 · the staircase */
+  .stair{display:grid; grid-template-columns:repeat(8,1fr); gap:clamp(8px,1.2vw,18px); align-items:end; height:clamp(200px,40vh,320px); margin-top:clamp(18px,4vh,36px)}
+  .step{display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:8px}
+  .step .n{font:500 clamp(18px,2vw,26px)/1 var(--mono); color:var(--heading)}
+  .step .bar{width:100%; background:var(--surface); border:1px solid var(--line); border-bottom:3px solid var(--bc,var(--ember)); height:4px; transition:height .9s cubic-bezier(.4,0,.2,1)}
+  html.paged .view.active .step .bar{height:calc(var(--v)*1%)}
+  html:not(.paged) .step .bar{height:calc(var(--v)*1%)}
+  .step:nth-child(1) .bar{transition-delay:.10s} .step:nth-child(2) .bar{transition-delay:.18s}
+  .step:nth-child(3) .bar{transition-delay:.26s} .step:nth-child(4) .bar{transition-delay:.34s}
+  .step:nth-child(5) .bar{transition-delay:.42s} .step:nth-child(6) .bar{transition-delay:.50s}
+  .step:nth-child(7) .bar{transition-delay:.58s} .step:nth-child(8) .bar{transition-delay:.66s}
+  @media (prefers-reduced-motion:reduce){ .step .bar{transition:none; height:calc(var(--v)*1%) !important} }
+  .step .l{font:400 clamp(8.5px,.8vw,10.5px) var(--mono); color:var(--muted); letter-spacing:.08em; text-transform:uppercase; text-align:center}
+  .step:nth-child(1){--bc:var(--gold)} .step:nth-child(2){--bc:var(--amber)}
+  .step:nth-child(3){--bc:var(--coral)} .step:nth-child(4){--bc:var(--rose)}
+  .step:nth-child(5){--bc:var(--rose)} .step:nth-child(6){--bc:var(--violet)}
+  .step:nth-child(7){--bc:var(--twilight)} .step:nth-child(8){--bc:var(--blue)}
+  .step:nth-child(1) .n{color:var(--gold)} .step:nth-child(2) .n{color:var(--amber)}
+  .step:nth-child(3) .n{color:var(--coral)} .step:nth-child(4) .n{color:var(--rose)}
+  .step:nth-child(5) .n{color:var(--rose)} .step:nth-child(6) .n{color:var(--violet)}
+  .step:nth-child(7) .n{color:var(--twilight)} .step:nth-child(8) .n{color:var(--blue-text)}
 
-  .doors{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin:26px 0}
-  .door{background:var(--surface); padding:18px 16px}
-  .door .dk{font:500 10.5px var(--mono); color:var(--ember-text); letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:6px}
-  .door h3{font:400 17px/1.3 var(--serif); color:var(--heading); margin-bottom:6px}
-  .door p{font-size:12.5px; color:var(--muted); max-width:40ch}
-  .door a{font:400 11px var(--mono)}
+  /* slide 6 · the composition */
+  .score{margin-top:clamp(14px,3vh,28px)}
+  .score svg{width:100%; height:auto; display:block}
+  .score .wl{font:500 9.5px var(--mono); letter-spacing:.1em; text-transform:uppercase}
+  .wave{fill:none; stroke-width:1.6; stroke-dasharray:1200; stroke-dashoffset:1200; transition:stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1)}
+  html.paged .view.active .wave{stroke-dashoffset:0}
+  html:not(.paged) .wave{stroke-dashoffset:0}
+  html.paged .view.active .wave.wa{transition-delay:.2s}
+  html.paged .view.active .wave.wb{transition-delay:.6s}
+  html.paged .view.active .wave.wsum{transition-delay:1.1s}
+  @media (prefers-reduced-motion:reduce){ .wave{stroke-dashoffset:0 !important; transition:none} }
+  .progs{display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,2vw,24px); margin-top:14px}
+  .prog{border:1px solid var(--line); background:var(--surface); padding:12px 16px}
+  .prog .vk{font:500 10px var(--mono); letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:4px}
+  .prog:first-child .vk{color:var(--amber)}
+  .prog:last-child .vk{color:var(--twilight)}
+  .prog h3{font:400 clamp(15px,1.5vw,19px)/1.3 var(--serif); color:var(--heading); margin-bottom:3px}
+  .prog p{font:400 clamp(11px,1vw,12.5px)/1.55 var(--serif); color:var(--muted)}
 
-  .tail{font:400 11px/1.9 var(--mono); color:var(--faint); max-width:76ch; border-top:1px solid var(--line); margin-top:28px; padding-top:14px}
+  /* slide 7 · the doors */
+  .doorrow{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2.4vw,30px); margin-top:clamp(16px,3vh,30px); max-width:900px}
+  .doorx{position:relative; border:1px solid var(--rule); background:var(--surface); padding:clamp(16px,2vh,26px) 16px; min-height:clamp(180px,34vh,280px);
+    display:flex; flex-direction:column; justify-content:flex-end; border-top-width:3px}
+  .doorx::after{content:""; position:absolute; right:12px; top:48%; width:7px; height:7px; border-radius:50%; background:var(--faint)}
+  .doorx:nth-child(1){border-top-color:var(--amber)}
+  .doorx:nth-child(2){border-top-color:var(--coral)}
+  .doorx:nth-child(3){border-top-color:var(--twilight)}
+  .doorx .dk{font:500 9.5px var(--mono); color:var(--ember-text); letter-spacing:.12em; text-transform:uppercase; margin-bottom:6px}
+  .doorx h3{font:400 clamp(15px,1.6vw,20px)/1.3 var(--serif); color:var(--heading); margin-bottom:5px}
+  .doorx p{font:400 clamp(10.5px,1vw,12.5px)/1.55 var(--serif); color:var(--muted); margin-bottom:8px}
+  .doorx a{font:400 10.5px var(--mono)}
+  .tail{font:400 9.5px/1.7 var(--mono); color:var(--faint); max-width:100%; margin-top:clamp(12px,2.5vh,22px)}
 
-  @media (max-width:700px){
-    .hero h1{font-size:30px}
-    .ladder{grid-template-columns:repeat(2,1fr)}
-    .ikigai-row{grid-template-columns:1fr}
-    .duet,.doors{grid-template-columns:1fr}
-    .sec h2{font-size:22px}
-    .pager .arrow{padding:8px 13px}
-    .pager .dots{display:none}
+  @media (max-width:860px){
+    html.paged .view-inner{justify-content:flex-start; padding-top:26px}
+    .split,.ikigai-row,.progs{grid-template-columns:1fr}
+    .hyear .rail{display:none}
+    .hgrid{grid-template-columns:1fr; min-height:0; gap:14px}
+    .hbeat{text-align:left; padding:0; justify-content:flex-start}
+    .hbeat .node{display:none}
+    .hbeat .cell{padding:0 !important}
+    .stair{height:180px}
+    .doorrow{grid-template-columns:1fr; max-width:100%}
+    .doorx{min-height:0}
+    .hero h1{font-size:32px}
   }
 </style>
 </head>
@@ -187,13 +243,20 @@
 
 <section class="view hero" id="telling" data-title="a year in formation">
   <div class="frame view-inner">
-    <div class="kicker rv">One year &middot; August 2025 to August 14, 2026</div>
+    <div class="kicker rv">The launch gathering &middot; RegenHub, LCA &middot; Boulder</div>
     <h1 class="rv">A Year in Formation</h1>
-    <p class="dek rv">The story of how a room full of people who shared a lease became a cooperative that shares a record. Told by the steward, at the launch gathering of RegenHub, LCA, with every date drawn from the record itself.</p>
+    <p class="dek rv">How a room full of people who shared a lease became a cooperative that shares a record. Every date below is drawn from the record itself.</p>
     <div class="meta rv">
       <span class="chip ok">dates &middot; from the record</span>
       <span class="chip warn">meeting log &middot; awaiting the steward's hand</span>
-      <span class="chip neutral">drafted by Nou from the steward's voice notes &middot; 2026-07-27</span>
+      <span class="chip neutral">drafted by Nou &middot; 2026-07-27</span>
+    </div>
+    <div class="yeartrack rv" aria-hidden="true">
+      <div class="rail"></div>
+      <span class="tick" style="left:2%; background:var(--gold)"><i>AUG 2025</i></span>
+      <span class="tick" style="left:35%; background:var(--amber)"><i>FEB 6 · FILED</i></span>
+      <span class="tick" style="left:75%; background:var(--rose)"><i>JUL · THE COMMONS</i></span>
+      <span class="tick" style="left:98%; background:var(--twilight)"><i>AUG 14 · LAUNCH</i></span>
     </div>
   </div>
 </section>
@@ -201,9 +264,20 @@
 <section class="view sec" id="beginning" data-tint="gold" data-title="i &middot; the honest beginning">
   <div class="frame view-inner">
     <div class="addr rv">i &middot; the honest beginning</div>
-    <h2 class="rv">We organized around the least exciting thing we had</h2>
-    <p class="rv">The formation began with a practical ask: Kevin held the lease and the insurance for the third floor of 1515 Walnut inside an LLC of his own, and he wanted a container that could hold them on its own feet. A self-sustaining entity, so the space would not depend on any one person's balance sheet.</p>
-    <p class="rv">That meant the first organizing variables were the lowest compounding ones: the lease payment and the expenses. Not the most exciting reason to form anything. But it was the true reason, and it sat inside a larger collection of reasons, the ones this telling is for. A cooperative formed around rent can honestly say what it is; a cooperative formed around a vision statement has to prove it. We chose to start from the ground and earn the vision.</p>
+    <div class="split">
+      <div>
+        <h2 class="rv">We organized around the least exciting thing we had</h2>
+        <p class="lede rv">Kevin held the lease and the insurance for the third floor of 1515 Walnut in an LLC of his own, and asked for a container that could hold them on its own feet: a self-sustaining entity, dependent on no one person's balance sheet.</p>
+        <p class="cap rv">A cooperative formed around rent can honestly say what it is; one formed around a vision statement has to prove it. We started from the ground and set out to earn the vision.</p>
+      </div>
+      <div class="ground rv" aria-label="A stack: the lease at the ground, then the expenses, then a self-sustaining entity, then the vision resting on all of it">
+        <div class="slab s1">the ground<b>the lease</b></div>
+        <div class="slab s2">the necessity<b>the expenses</b></div>
+        <div class="slab s3">the container<b>a self-sustaining entity</b></div>
+        <div class="slab s4">still being earned<b>the vision</b></div>
+        <div class="note" style="order:-1">built upward from the lowest compounding variable</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -211,47 +285,42 @@
   <div class="frame view-inner">
     <div class="addr rv">ii &middot; the year of dialogue</div>
     <h2 class="rv">What a year of meetings actually made</h2>
-    <p class="rv">From August 2025 onward the formation moved through dialogue: conversation, reflection, and thoughtful coordination, week over week. The decisions below are the ones the record holds. The meetings that made them deserve to be named one by one, and the space for that honor is held open here until the steward enters his log.</p>
-    <div class="tl">
-      <div class="beat rv" style="--tint:var(--gold)">
-        <span class="when">August 2025</span>
-        <h3>The formation meetings begin</h3>
-        <p>The container question is opened: what form can hold a shared space, shared expenses, and the ambitions of the people inside it, without belonging to any one of them.</p>
-      </div>
-      <div class="beat await rv">
-        <span class="when">Fall 2025</span>
-        <h3>The autumn dialogues enter here</h3>
-        <span class="chip warn">awaiting the steward's log &middot; meetings and topics, honored by name</span>
-      </div>
-      <div class="beat rv" style="--tint:var(--amber)">
-        <span class="when">February 6, 2026</span>
-        <h3>RegenHub, LCA is filed</h3>
-        <p>A Colorado public benefit limited cooperative association, formed to cultivate scenius. The form was the finding of the fall: cooperative, member-owned, stated in public benefit terms.</p>
-      </div>
-      <div class="beat rv" style="--tint:var(--amber)">
-        <span class="when">February 2026</span>
-        <h3>The financial systems take shape</h3>
-        <p>Mercury as primary banking, Stripe migrated under the cooperative's own name, Xero as the book of account. The lease and purchase path for the third floor advances in direct dialogue with Kevin.</p>
-      </div>
-      <div class="beat rv" style="--tint:var(--coral)">
-        <span class="when">April 2026</span>
-        <h3>The formation becomes an ecosystem</h3>
-        <p>The work reframes from a package of documents to a living formation with health indicators, and the capital shape is agreed among the organizers and early backers.</p>
-      </div>
-      <div class="beat rv" style="--tint:var(--coral)">
-        <span class="when">June 24, 2026</span>
-        <h3>The board adopts the Labor Schedule</h3>
-        <p>The first rates: what an hour of member labor is recognized to be worth, by tier, adopted as policy before any system existed to compute with it. Policy first, machinery second.</p>
-      </div>
-      <div class="beat rv" style="--tint:var(--rose)">
-        <span class="when">July 2026</span>
-        <h3>The Commons is built</h3>
-        <p>In one focused month the Common Information System goes from specification to live substrate: the database and its policies on July 11, the first member surfaces verified July 12, the export and restore rehearsal proving the walkaway on July 21, the Patronage and Treasury modules July 22, the unified shell and its gate July 24, and the documents reconciled to the record July 27.</p>
-      </div>
-      <div class="beat rv" style="--tint:var(--twilight)">
-        <span class="when">August 14, 2026</span>
-        <h3>Ratification, and the launch gathering</h3>
-        <p>The members vote. The marks flip from Drafted to Ratified, the agreements bind, and the year of dialogue becomes a governed, member-owned record. This room, tonight.</p>
+    <p class="lede rv">Week over week: conversation, reflection, thoughtful coordination. These are the decisions the record holds; the meetings that made them will be honored by name when the steward enters his log.</p>
+    <div class="hyear rv">
+      <div class="rail" aria-hidden="true"></div>
+      <div class="hgrid">
+        <div class="hbeat" style="--tint:var(--gold)">
+          <span class="node" aria-hidden="true"></span>
+          <div class="cell"><span class="when">Aug 2025</span><h3>The formation meetings begin</h3><p>the container question opens</p></div>
+        </div>
+        <div class="hbeat await">
+          <span class="node" aria-hidden="true"></span>
+          <div class="cell"><span class="when">Fall 2025</span><h3>The autumn dialogues</h3><p class="hold">awaiting the steward's log</p></div>
+        </div>
+        <div class="hbeat" style="--tint:var(--amber)">
+          <span class="node" aria-hidden="true"></span>
+          <div class="cell"><span class="when">Feb 6, 2026</span><h3>RegenHub, LCA filed</h3><p>a Colorado public benefit LCA, formed to cultivate scenius</p></div>
+        </div>
+        <div class="hbeat" style="--tint:var(--amber)">
+          <span class="node" aria-hidden="true"></span>
+          <div class="cell"><span class="when">Feb 2026</span><h3>The financial rails</h3><p>Mercury, Stripe in the co-op's name, Xero</p></div>
+        </div>
+        <div class="hbeat" style="--tint:var(--coral)">
+          <span class="node" aria-hidden="true"></span>
+          <div class="cell"><span class="when">Apr 2026</span><h3>Formation as ecosystem</h3><p>living health indicators; the capital shape agreed</p></div>
+        </div>
+        <div class="hbeat" style="--tint:var(--coral)">
+          <span class="node" aria-hidden="true"></span>
+          <div class="cell"><span class="when">Jun 24, 2026</span><h3>The Labor Schedule adopts</h3><p>policy first, machinery second</p></div>
+        </div>
+        <div class="hbeat" style="--tint:var(--rose)">
+          <span class="node" aria-hidden="true"></span>
+          <div class="cell"><span class="when">Jul 2026</span><h3>The Commons is built</h3><p>specification to live substrate in one month</p></div>
+        </div>
+        <div class="hbeat" style="--tint:var(--twilight)">
+          <span class="node" aria-hidden="true"></span>
+          <div class="cell"><span class="when">Aug 14, 2026</span><h3>Ratification</h3><p>the marks flip; this room, tonight</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -274,12 +343,10 @@
         <text x="190" y="180" text-anchor="middle" class="core">the steward's role</text>
       </svg>
       <div>
-        <p class="rv">Ikigai, as I hold it: a Japanese pattern for asking what your felt purpose and experience in life are leading you toward, and how to apply your full self to that. A pattern for self-reflective, and maybe prosocial, human development.</p>
-        <p class="rv">Kevin's question did real work. It let me craft the steward's role so that it deeply intersects my own ground: an information technologist who has often found it hard to articulate what he does, why it matters, who it serves, and what it might unlock.</p>
-        <p class="rv">The answer, it turned out, was to build the thing that does the articulating. A system whose whole purpose is legibility: what is true here, who decided it, what it is worth, and where any of it came from.</p>
+        <p class="lede rv">A pattern for asking what your felt purpose is leading you toward, and how to apply your full self to it. Kevin's question let me craft the steward's role at the intersection of my own ground: an information technologist who found it hard to articulate what he does, why it matters, and who it serves.</p>
+        <div class="pull rv">The system I could never quite describe about my own work is the one I built so the cooperative would never have that problem.<span class="who">the steward, first partially compensated member of the cooperative</span></div>
       </div>
     </div>
-    <div class="pull rv">The system I could never quite describe about my own work is the one I built so the cooperative would never have that problem.<span class="who">the steward, first partially compensated member of the cooperative</span></div>
   </div>
 </section>
 
@@ -287,18 +354,18 @@
   <div class="frame view-inner">
     <div class="addr rv">iv &middot; five months of building</div>
     <h2 class="rv">The Commons, counted</h2>
-    <p class="rv">What we call the Commons, formally the Common Information System, is the cooperative's standard record keeping: the book of record and the interface through which the cooperative operates itself. It was built in the open, one packet at a time, under ten principles that fit on a single page. Its shape makes a ladder:</p>
-    <div class="ladder rv">
-      <div class="rung"><span class="n" data-count="1">1</span><span class="l">year of formation</span></div>
-      <div class="rung"><span class="n" data-count="2">2</span><span class="l">principal Programs</span></div>
-      <div class="rung"><span class="n" data-count="3">3</span><span class="l">doors into one record</span></div>
-      <div class="rung"><span class="n" data-count="4">4</span><span class="l">launch slices</span></div>
-      <div class="rung"><span class="n" data-count="6">6</span><span class="l">Primitives of value</span></div>
-      <div class="rung"><span class="n" data-count="7">7</span><span class="l">gates, humanly attested</span></div>
-      <div class="rung"><span class="n" data-count="10">10</span><span class="l">principles</span></div>
-      <div class="rung"><span class="n" data-count="11">11</span><span class="l">invariant laws</span></div>
+    <p class="lede rv">The Common Information System: the cooperative's book of record, and the interface through which it operates itself. Built in the open, one packet at a time. Its shape makes a staircase:</p>
+    <div class="stair rv" role="img" aria-label="A rising staircase: 1 year, 2 Programs, 3 doors, 4 slices, 6 Primitives, 7 gates, 10 principles, 11 laws">
+      <div class="step" style="--v:9"><span class="n" data-count="1">1</span><div class="bar"></div><span class="l">year of formation</span></div>
+      <div class="step" style="--v:18"><span class="n" data-count="2">2</span><div class="bar"></div><span class="l">principal Programs</span></div>
+      <div class="step" style="--v:27"><span class="n" data-count="3">3</span><div class="bar"></div><span class="l">doors into one record</span></div>
+      <div class="step" style="--v:36"><span class="n" data-count="4">4</span><div class="bar"></div><span class="l">launch slices</span></div>
+      <div class="step" style="--v:55"><span class="n" data-count="6">6</span><div class="bar"></div><span class="l">Primitives of value</span></div>
+      <div class="step" style="--v:64"><span class="n" data-count="7">7</span><div class="bar"></div><span class="l">gates, attested</span></div>
+      <div class="step" style="--v:91"><span class="n" data-count="10">10</span><div class="bar"></div><span class="l">principles</span></div>
+      <div class="step" style="--v:100"><span class="n" data-count="11">11</span><div class="bar"></div><span class="l">invariant laws</span></div>
     </div>
-    <p class="rv">Balances are computed, never stored. Every change is an event with an actor and a time. Every figure traces to the policy that produced it, and every table has an export path, so the record belongs to the cooperative and not to any vendor, including its builders. Another cooperative could take everything published and start their own; that is a design goal, not a leak.</p>
+    <p class="cap rv">Balances are computed, never stored; every change is an event with an actor and a time; every figure traces to its policy; every table has an export path. Another cooperative could take all of it and start their own. That is a design goal, not a leak.</p>
   </div>
 </section>
 
@@ -306,20 +373,27 @@
   <div class="frame view-inner">
     <div class="addr rv">v &middot; two initiatives, one composition</div>
     <h2 class="rv">An orchestra, not a soloist</h2>
-    <p class="rv">Two initiatives live at the hub now, and the record knows them as its two principal Programs.</p>
-    <div class="duet rv">
-      <div class="voice">
-        <span class="vk">Program 01</span>
-        <h3>RegenHub</h3>
-        <p>The container for the co-working space itself: the third floor, the lease, the expenses, the daily practice of a shared physical place. The ground the whole formation stands on.</p>
+    <div class="score rv" role="img" aria-label="Two smaller waves, RegenHub and Techne, combine into one larger wave labeled the composition">
+      <svg viewBox="0 0 900 190">
+        <text class="wl" x="8" y="34" fill="#C4956A">regenhub &middot; the place</text>
+        <path class="wave wa" stroke="#C4956A" d="M10.0,46.0 L17.3,47.9 L24.7,49.7 L32.0,51.4 L39.3,53.1 L46.7,54.5 L54.0,55.7 L61.3,56.7 L68.7,57.4 L76.0,57.9 L83.3,58.0 L90.7,57.9 L98.0,57.4 L105.3,56.7 L112.7,55.7 L120.0,54.5 L127.3,53.1 L134.7,51.4 L142.0,49.7 L149.3,47.9 L156.7,46.0 L164.0,44.1 L171.3,42.3 L178.7,40.6 L186.0,38.9 L193.3,37.5 L200.7,36.3 L208.0,35.3 L215.3,34.6 L222.7,34.1 L230.0,34.0 L237.3,34.1 L244.7,34.6 L252.0,35.3 L259.3,36.3 L266.7,37.5 L274.0,38.9 L281.3,40.6 L288.7,42.3 L296.0,44.1 L303.3,46.0 L310.7,47.9 L318.0,49.7 L325.3,51.4 L332.7,53.1 L340.0,54.5 L347.3,55.7 L354.7,56.7 L362.0,57.4 L369.3,57.9 L376.7,58.0 L384.0,57.9 L391.3,57.4 L398.7,56.7 L406.0,55.7 L413.3,54.5 L420.7,53.1 L428.0,51.4 L435.3,49.7 L442.7,47.9 L450.0,46.0 L457.3,44.1 L464.7,42.3 L472.0,40.6 L479.3,38.9 L486.7,37.5 L494.0,36.3 L501.3,35.3 L508.7,34.6 L516.0,34.1 L523.3,34.0 L530.7,34.1 L538.0,34.6 L545.3,35.3 L552.7,36.3 L560.0,37.5 L567.3,38.9 L574.7,40.6 L582.0,42.3 L589.3,44.1 L596.7,46.0 L604.0,47.9 L611.3,49.7 L618.7,51.4 L626.0,53.1 L633.3,54.5 L640.7,55.7 L648.0,56.7 L655.3,57.4 L662.7,57.9 L670.0,58.0 L677.3,57.9 L684.7,57.4 L692.0,56.7 L699.3,55.7 L706.7,54.5 L714.0,53.1 L721.3,51.4 L728.7,49.7 L736.0,47.9 L743.3,46.0 L750.7,44.1 L758.0,42.3 L765.3,40.6 L772.7,38.9 L780.0,37.5 L787.3,36.3 L794.7,35.3 L802.0,34.6 L809.3,34.1 L816.7,34.0 L824.0,34.1 L831.3,34.6 L838.7,35.3 L846.0,36.3 L853.3,37.5 L860.7,38.9 L868.0,40.6 L875.3,42.3 L882.7,44.1 L890.0,46.0"/>
+        <text class="wl" x="8" y="88" fill="#6A8AC4">techne &middot; the crafts</text>
+        <path class="wave wb" stroke="#6A8AC4" d="M10.0,107.1 L17.3,107.8 L24.7,108.0 L32.0,107.6 L39.3,106.7 L46.7,105.4 L54.0,103.6 L61.3,101.7 L68.7,99.6 L76.0,97.5 L83.3,95.6 L90.7,94.1 L98.0,92.9 L105.3,92.2 L112.7,92.0 L120.0,92.4 L127.3,93.3 L134.7,94.6 L142.0,96.4 L149.3,98.3 L156.7,100.4 L164.0,102.5 L171.3,104.4 L178.7,105.9 L186.0,107.1 L193.3,107.8 L200.7,108.0 L208.0,107.6 L215.3,106.7 L222.7,105.4 L230.0,103.6 L237.3,101.7 L244.7,99.6 L252.0,97.5 L259.3,95.6 L266.7,94.1 L274.0,92.9 L281.3,92.2 L288.7,92.0 L296.0,92.4 L303.3,93.3 L310.7,94.6 L318.0,96.4 L325.3,98.3 L332.7,100.4 L340.0,102.5 L347.3,104.4 L354.7,105.9 L362.0,107.1 L369.3,107.8 L376.7,108.0 L384.0,107.6 L391.3,106.7 L398.7,105.4 L406.0,103.6 L413.3,101.7 L420.7,99.6 L428.0,97.5 L435.3,95.6 L442.7,94.1 L450.0,92.9 L457.3,92.2 L464.7,92.0 L472.0,92.4 L479.3,93.3 L486.7,94.6 L494.0,96.4 L501.3,98.3 L508.7,100.4 L516.0,102.5 L523.3,104.4 L530.7,105.9 L538.0,107.1 L545.3,107.8 L552.7,108.0 L560.0,107.6 L567.3,106.7 L574.7,105.4 L582.0,103.6 L589.3,101.7 L596.7,99.6 L604.0,97.5 L611.3,95.6 L618.7,94.1 L626.0,92.9 L633.3,92.2 L640.7,92.0 L648.0,92.4 L655.3,93.3 L662.7,94.6 L670.0,96.4 L677.3,98.3 L684.7,100.4 L692.0,102.5 L699.3,104.4 L706.7,105.9 L714.0,107.1 L721.3,107.8 L728.7,108.0 L736.0,107.6 L743.3,106.7 L750.7,105.4 L758.0,103.6 L765.3,101.7 L772.7,99.6 L780.0,97.5 L787.3,95.6 L794.7,94.1 L802.0,92.9 L809.3,92.2 L816.7,92.0 L824.0,92.4 L831.3,93.3 L838.7,94.6 L846.0,96.4 L853.3,98.3 L860.7,100.4 L868.0,102.5 L875.3,104.4 L882.7,105.9 L890.0,107.1"/>
+        <text class="wl" x="8" y="140" fill="#C47A6A">the composition &middot; greater than the parts</text>
+        <path class="wave wsum" stroke="#C47A6A" stroke-width="2.2" d="M10.0,165.1 L15.5,167.1 L21.0,168.8 L26.5,170.1 L32.0,171.1 L37.5,171.6 L43.0,171.9 L48.5,171.8 L54.0,171.3 L59.5,170.6 L65.0,169.7 L70.5,168.6 L76.0,167.4 L81.5,166.1 L87.0,164.8 L92.5,163.5 L98.0,162.3 L103.5,161.2 L109.0,160.3 L114.5,159.5 L120.0,158.9 L125.5,158.5 L131.0,158.2 L136.5,158.1 L142.0,158.1 L147.5,158.2 L153.0,158.3 L158.5,158.5 L164.0,158.6 L169.5,158.7 L175.0,158.6 L180.5,158.4 L186.0,158.1 L191.5,157.6 L197.0,156.9 L202.5,156.0 L208.0,154.9 L213.5,153.7 L219.0,152.4 L224.5,151.0 L230.0,149.6 L235.5,148.3 L241.0,147.0 L246.5,145.8 L252.0,144.8 L257.5,144.1 L263.0,143.7 L268.5,143.6 L274.0,143.8 L279.5,144.4 L285.0,145.4 L290.5,146.8 L296.0,148.5 L301.5,150.6 L307.0,152.9 L312.5,155.4 L318.0,158.1 L323.5,160.9 L329.0,163.6 L334.5,166.4 L340.0,169.0 L345.5,171.3 L351.0,173.4 L356.5,175.2 L362.0,176.5 L367.5,177.5 L373.0,177.9 L378.5,177.9 L384.0,177.5 L389.5,176.5 L395.0,175.2 L400.5,173.4 L406.0,171.3 L411.5,169.0 L417.0,166.4 L422.5,163.7 L428.0,161.0 L433.5,158.2 L439.0,155.6 L444.5,153.1 L450.0,150.9 L455.5,148.9 L461.0,147.2 L466.5,145.9 L472.0,144.9 L477.5,144.4 L483.0,144.1 L488.5,144.2 L494.0,144.7 L499.5,145.4 L505.0,146.3 L510.5,147.4 L516.0,148.6 L521.5,149.9 L527.0,151.2 L532.5,152.5 L538.0,153.7 L543.5,154.8 L549.0,155.7 L554.5,156.5 L560.0,157.1 L565.5,157.5 L571.0,157.8 L576.5,157.9 L582.0,157.9 L587.5,157.8 L593.0,157.7 L598.5,157.5 L604.0,157.4 L609.5,157.3 L615.0,157.4 L620.5,157.6 L626.0,157.9 L631.5,158.4 L637.0,159.1 L642.5,160.0 L648.0,161.1 L653.5,162.3 L659.0,163.6 L664.5,165.0 L670.0,166.4 L675.5,167.7 L681.0,169.0 L686.5,170.2 L692.0,171.2 L697.5,171.9 L703.0,172.3 L708.5,172.4 L714.0,172.2 L719.5,171.6 L725.0,170.6 L730.5,169.2 L736.0,167.5 L741.5,165.4 L747.0,163.1 L752.5,160.6 L758.0,157.9 L763.5,155.1 L769.0,152.4 L774.5,149.6 L780.0,147.0 L785.5,144.7 L791.0,142.6 L796.5,140.8 L802.0,139.5 L807.5,138.5 L813.0,138.1 L818.5,138.1 L824.0,138.5 L829.5,139.5 L835.0,140.8 L840.5,142.6 L846.0,144.7 L851.5,147.0 L857.0,149.6 L862.5,152.3 L868.0,155.0 L873.5,157.8 L879.0,160.4 L884.5,162.9 L890.0,165.1"/>
+      </svg>
+    </div>
+    <div class="progs">
+      <div class="prog rv">
+        <span class="vk">Program 01 &middot; RegenHub</span>
+        <p>The container for the co-working space: the third floor, the lease, the daily practice of a shared physical place.</p>
       </div>
-      <div class="voice">
-        <span class="vk">Program 02</span>
-        <h3>Techne</h3>
-        <p>The same placemaking intentionality carried into virtual space. A co-op of many crafts: a return to the art, the craft, and the science of practice, and to bringing intention to the tools, systems, and technologies of practice.</p>
+      <div class="prog rv">
+        <span class="vk">Program 02 &middot; Techne</span>
+        <p>Placemaking intentionality carried into virtual space. A co-op of many crafts: the art, craft, and science of practice.</p>
       </div>
     </div>
-    <p class="rv">The bet underneath both is composition. Fields coordinated with one another compound, the way an orchestra compounds: no instrument group sounds complete on its own, and the composition makes something greater than the parts. The Commons exists so that composition can be seen, valued, and shared honestly, which is what lets it keep happening.</p>
+    <p class="cap rv">Fields coordinated with one another compound the way an orchestra compounds: no instrument group sounds complete alone. The Commons exists so composition can be seen, valued, and shared honestly.</p>
   </div>
 </section>
 
@@ -327,29 +401,29 @@
   <div class="frame view-inner">
     <div class="addr rv">vi &middot; tonight's demonstration</div>
     <h2 class="rv">Do not take my word for any of this</h2>
-    <p class="rv">The system holds one authoritative record behind three doors, and all three are open tonight.</p>
-    <div class="doors rv">
-      <div class="door">
+    <p class="lede rv">One authoritative record, three doors, all open tonight.</p>
+    <div class="doorrow">
+      <div class="doorx rv">
         <span class="dk">door one &middot; browse</span>
         <h3>Walk the surfaces</h3>
-        <p>Sign in, read the agreements that would bind you, see the directory, the gatherings, the opportunity board, and the Programs.</p>
+        <p>Sign in, read what would bind you, meet the directory, the gatherings, the opportunities, the Programs.</p>
         <a href="https://techne.coop/intranet/">techne.coop/intranet/</a>
       </div>
-      <div class="door">
+      <div class="doorx rv">
         <span class="dk">door two &middot; ask</span>
         <h3>Ask in plain language</h3>
-        <p>Nou answers over the identical record, citing where it read, seeing only what you could see yourself. It drafts; people decide.</p>
+        <p>Nou answers over the identical record, citing where it read. It drafts; people decide.</p>
         <a href="https://techne.coop/commons/">techne.coop/commons/</a>
       </div>
-      <div class="door">
+      <div class="doorx rv">
         <span class="dk">door three &middot; verify</span>
         <h3>Check the ledger itself</h3>
-        <p>The build roadmap, the packet ledger, the export paths, and the weekly rehearsal that proves the whole record reconstructs.</p>
+        <p>The roadmap, the packet ledger, the exports, and the weekly rehearsal that proves the record reconstructs.</p>
         <a href="https://techne.coop/commons/build/">techne.coop/commons/build/</a>
       </div>
     </div>
-    <p class="rv">A year ago we organized around a lease because it was true. Tonight we ratify something larger that stayed true the whole way: a cooperative whose record of itself is honest enough to hand to strangers, and warm enough to belong to.</p>
-    <p class="tail rv">A Year in Formation &middot; the steward's telling for the launch gathering of August 14, 2026 &middot; drafted by Nou from the steward's voice notes of 2026-07-27, every date from the record &middot; the fall meeting log is held open for the steward's own hand, and the one name the dictation left uncertain, the LLC that held the lease, is confirmed before this page is spoken aloud &middot; RegenHub, LCA &middot; Boulder, Colorado</p>
+    <p class="cap rv">A year ago we organized around a lease because it was true. Tonight we ratify something larger that stayed true the whole way.</p>
+    <p class="tail rv">the steward's telling &middot; drafted by Nou from voice notes of 2026-07-27, every date from the record &middot; the fall meeting log is held open for the steward's own hand; the LLC that held the lease is confirmed before this is spoken aloud &middot; RegenHub, LCA &middot; Boulder, Colorado</p>
   </div>
 </section>
 
@@ -389,7 +463,7 @@
 
     views.forEach(function(v,i){
       var d=document.createElement('button');
-      d.className='dot'; d.setAttribute('aria-label','Page '+(i+1)+': '+v.dataset.title.replace(/&middot;/g,''));
+      d.className='dot'; d.setAttribute('aria-label','Page '+(i+1)+': '+v.dataset.title);
       d.addEventListener('click',function(){go(i);});
       dotsBox.appendChild(d);
     });
@@ -412,7 +486,7 @@
       stagger(v);
       counts(v);
       prev.disabled=(i===0); next.disabled=(i===views.length-1);
-      where.textContent=v.dataset.title.replace(/&middot;/g,'·')+'  ·  '+(i+1)+' / '+views.length;
+      where.textContent=v.dataset.title+'  ·  '+(i+1)+' / '+views.length;
       dots.forEach(function(d,k){d.classList.toggle('on',k===i);});
       if(!silent){
         if(history.replaceState) history.replaceState(null,'','#'+v.id);
