@@ -201,6 +201,20 @@
   .prog h3{font:400 clamp(15px,1.5vw,19px)/1.3 var(--serif); color:var(--heading); margin-bottom:3px}
   .prog p{font:400 clamp(11px,1vw,12.5px)/1.55 var(--serif); color:var(--muted)}
 
+  /* act slides · the meetings, honored by name */
+  .actlede{font:400 clamp(12.5px,1.15vw,15px)/1.6 var(--serif); font-style:italic; color:var(--muted); max-width:64ch; margin-bottom:clamp(14px,2.5vh,24px)}
+  .mtgrid{display:grid; gap:clamp(10px,1.4vw,20px); margin-top:6px}
+  .mtgrid.g4{grid-template-columns:repeat(4,1fr)}
+  .mtgrid.g3{grid-template-columns:repeat(3,1fr); max-width:960px}
+  .mtg{border:1px solid var(--line); border-top:3px solid var(--tint,var(--ember)); background:var(--surface); padding:clamp(12px,1.6vh,18px) 14px; display:flex; flex-direction:column}
+  .mtg .mn{font:500 9.5px var(--mono); color:var(--tint,var(--ember-text)); letter-spacing:.1em; text-transform:uppercase; margin-bottom:5px}
+  .mtg h3{font:400 clamp(13.5px,1.3vw,17px)/1.3 var(--serif); color:var(--heading); margin-bottom:5px}
+  .mtg p{font:400 clamp(10.5px,1vw,12.5px)/1.55 var(--serif); color:var(--text)}
+  .mtg .cf{font:italic 400 clamp(10px,.95vw,11.5px)/1.5 var(--serif); color:var(--muted); border-top:1px solid var(--line); margin-top:auto; padding-top:7px}
+  .mtg .cf b{font:500 8.5px var(--mono); font-style:normal; letter-spacing:.1em; text-transform:uppercase; color:var(--tint,var(--ember-text)); margin-right:6px}
+  .actpull{font:400 clamp(13px,1.3vw,16px)/1.55 var(--serif); font-style:italic; color:var(--heading); margin-top:clamp(12px,2vh,20px); max-width:70ch}
+  .actpull .who{font:400 9.5px var(--mono); font-style:normal; color:var(--faint); letter-spacing:.08em; text-transform:uppercase; margin-left:10px}
+
   /* slide 7 · the doors */
   .doorrow{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2.4vw,30px); margin-top:clamp(16px,3vh,30px); max-width:900px}
   .doorx{position:relative; border:1px solid var(--rule); background:var(--surface); padding:clamp(16px,2vh,26px) 16px; min-height:clamp(180px,34vh,280px);
@@ -218,6 +232,8 @@
   @media (max-width:860px){
     html.paged .view-inner{justify-content:flex-start; padding-top:26px}
     .split,.ikigai-row,.progs{grid-template-columns:1fr}
+    .mtgrid.g4,.mtgrid.g3{grid-template-columns:1fr}
+    .mtg .cf{margin-top:7px}
     .hyear .rail{display:none}
     .hgrid{grid-template-columns:1fr; min-height:0; gap:14px}
     .hbeat{text-align:left; padding:0; justify-content:flex-start}
@@ -245,15 +261,15 @@
   <div class="frame view-inner">
     <div class="kicker rv">The launch gathering &middot; RegenHub, LCA &middot; Boulder</div>
     <h1 class="rv">A Year in Formation</h1>
-    <p class="dek rv">How a room full of people who shared a lease became a cooperative that shares a record. Every date below is drawn from the record itself.</p>
+    <p class="dek rv">Fifteen meetings, one filing, and the dialogue that turned a shared room into a cooperative that shares a record. Told from the archives, in the group's own voice, with no one speaking alone.</p>
     <div class="meta rv">
       <span class="chip ok">dates &middot; from the record</span>
-      <span class="chip warn">meeting log &middot; awaiting the steward's hand</span>
-      <span class="chip neutral">drafted by Nou &middot; 2026-07-27</span>
+      <span class="chip ok">meetings 01&ndash;15 &middot; from the formation archives</span>
+      <span class="chip neutral">the steward's telling, with Nou &middot; offered for the room's correction</span>
     </div>
     <div class="yeartrack rv" aria-hidden="true">
       <div class="rail"></div>
-      <span class="tick" style="left:2%; background:var(--gold)"><i>AUG 2025</i></span>
+      <span class="tick" style="left:2%; background:var(--gold)"><i>AUG 8 · MEETING 01</i></span>
       <span class="tick" style="left:35%; background:var(--amber)"><i>FEB 6 · FILED</i></span>
       <span class="tick" style="left:75%; background:var(--rose)"><i>JUL · THE COMMONS</i></span>
       <span class="tick" style="left:98%; background:var(--twilight)"><i>AUG 14 · LAUNCH</i></span>
@@ -267,8 +283,8 @@
     <div class="split">
       <div>
         <h2 class="rv">We organized around the least exciting thing we had</h2>
-        <p class="lede rv">Kevin held the lease and the insurance for the third floor of 1515 Walnut in an LLC of his own, and asked for a container that could hold them on its own feet: a self-sustaining entity, dependent on no one person's balance sheet.</p>
-        <p class="cap rv">A cooperative formed around rent can honestly say what it is; one formed around a vision statement has to prove it. We started from the ground and set out to earn the vision.</p>
+        <p class="lede rv">The space already worked. People showed up, tended it, and treated it as theirs. But on paper it belonged to one LLC and one person's signature: the lease, the insurance, the liability, all carried privately. The ask that started everything was practical: form a container that can hold what the community already does, so the legal reality catches up to the lived one.</p>
+        <p class="cap rv">That is the least glamorous reason a cooperative has ever been formed, and the group knew it. A cooperative formed around rent can honestly say what it is; one formed around a vision statement has to prove it. We started from the ground and set out to earn the vision.</p>
       </div>
       <div class="ground rv" aria-label="A stack: the lease at the ground, then the expenses, then a self-sustaining entity, then the vision resting on all of it">
         <div class="slab s1">the ground<b>the lease</b></div>
@@ -285,37 +301,37 @@
   <div class="frame view-inner">
     <div class="addr rv">ii &middot; the year of dialogue</div>
     <h2 class="rv">What a year of meetings actually made</h2>
-    <p class="lede rv">Week over week: conversation, reflection, thoughtful coordination. These are the decisions the record holds; the meetings that made them will be honored by name when the steward enters his log.</p>
+    <p class="lede rv">Fifteen meetings from the first Friday of August to the first Friday of February, then six months of tending. Four acts, told meeting by meeting on the pages that follow.</p>
     <div class="hyear rv">
       <div class="rail" aria-hidden="true"></div>
       <div class="hgrid">
         <div class="hbeat" style="--tint:var(--gold)">
           <span class="node" aria-hidden="true"></span>
-          <div class="cell"><span class="when">Aug 2025</span><h3>The formation meetings begin</h3><p>the container question opens</p></div>
+          <div class="cell"><span class="when">Aug 8, 2025</span><h3>Meeting 01</h3><p>the why and the what; the container question opens</p></div>
         </div>
-        <div class="hbeat await">
+        <div class="hbeat" style="--tint:var(--gold)">
           <span class="node" aria-hidden="true"></span>
-          <div class="cell"><span class="when">Fall 2025</span><h3>The autumn dialogues</h3><p class="hold">awaiting the steward's log</p></div>
-        </div>
-        <div class="hbeat" style="--tint:var(--amber)">
-          <span class="node" aria-hidden="true"></span>
-          <div class="cell"><span class="when">Feb 6, 2026</span><h3>RegenHub, LCA filed</h3><p>a Colorado public benefit LCA, formed to cultivate scenius</p></div>
-        </div>
-        <div class="hbeat" style="--tint:var(--amber)">
-          <span class="node" aria-hidden="true"></span>
-          <div class="cell"><span class="when">Feb 2026</span><h3>The financial rails</h3><p>Mercury, Stripe in the co-op's name, Xero</p></div>
+          <div class="cell"><span class="when">Sep 2025</span><h3>The gift and the ground</h3><p>scenius arrives; soil, not firm</p></div>
         </div>
         <div class="hbeat" style="--tint:var(--coral)">
           <span class="node" aria-hidden="true"></span>
-          <div class="cell"><span class="when">Apr 2026</span><h3>Formation as ecosystem</h3><p>living health indicators; the capital shape agreed</p></div>
-        </div>
-        <div class="hbeat" style="--tint:var(--coral)">
-          <span class="node" aria-hidden="true"></span>
-          <div class="cell"><span class="when">Jun 24, 2026</span><h3>The Labor Schedule adopts</h3><p>policy first, machinery second</p></div>
+          <div class="cell"><span class="when">Nov 2025</span><h3>Counsel and the split</h3><p>the mirror of counsel; a venture commons</p></div>
         </div>
         <div class="hbeat" style="--tint:var(--rose)">
           <span class="node" aria-hidden="true"></span>
-          <div class="cell"><span class="when">Jul 2026</span><h3>The Commons is built</h3><p>specification to live substrate in one month</p></div>
+          <div class="cell"><span class="when">Feb 6, 2026</span><h3>Meeting 15 &middot; filed</h3><p>RegenHub becomes an LCA; the vessel is born</p></div>
+        </div>
+        <div class="hbeat" style="--tint:var(--rose)">
+          <span class="node" aria-hidden="true"></span>
+          <div class="cell"><span class="when">Feb 2026</span><h3>The financial rails</h3><p>Mercury, Stripe in the co-op's name, Xero</p></div>
+        </div>
+        <div class="hbeat" style="--tint:var(--violet)">
+          <span class="node" aria-hidden="true"></span>
+          <div class="cell"><span class="when">Jun 24, 2026</span><h3>The Labor Schedule adopts</h3><p>policy first, machinery second</p></div>
+        </div>
+        <div class="hbeat" style="--tint:var(--violet)">
+          <span class="node" aria-hidden="true"></span>
+          <div class="cell"><span class="when">Jul 2026</span><h3>The Commons is built</h3><p>the dialogue changes medium</p></div>
         </div>
         <div class="hbeat" style="--tint:var(--twilight)">
           <span class="node" aria-hidden="true"></span>
@@ -326,9 +342,140 @@
   </div>
 </section>
 
-<section class="view sec" id="ikigai" data-tint="coral" data-title="iii &middot; the role that emerged">
+<section class="view sec" id="act1" data-tint="gold" data-title="act i &middot; the gift and the ground">
   <div class="frame view-inner">
-    <div class="addr rv">iii &middot; the role that emerged</div>
+    <div class="addr rv">act i &middot; august to september 2025</div>
+    <h2 class="rv">The gift and the ground</h2>
+    <p class="actlede rv">Four meetings in which the group asked why, found its metaphor, and chose what to do with surplus before it had any.</p>
+    <div class="mtgrid g4">
+      <div class="mtg rv" style="--tint:var(--gold)">
+        <span class="mn">01 &middot; Aug 8 &middot; the why and the what</span>
+        <h3>Two practical drivers, and a question of worth</h3>
+        <p>Distribute the liability; align the legal form with a practice already cooperative. Then: can gratitude itself be patronage? Three rings of economic relationship: giving, saving, investing together.</p>
+        <p class="cf"><b>carried</b>The three rings still order our relationship to capital.</p>
+      </div>
+      <div class="mtg rv" style="--tint:var(--gold)">
+        <span class="mn">02 &middot; Sep 5 &middot; visioning the scenius</span>
+        <h3>The word arrives</h3>
+        <p>A round-robin visioning, from buying the building to seeding an alternative economy. The lasting gift was vocabulary: scenius, the collective form of genius.</p>
+        <p class="cf"><b>carried</b>Scenius became the public benefit purpose in the filed articles.</p>
+      </div>
+      <div class="mtg rv" style="--tint:var(--amber)">
+        <span class="mn">03 &middot; Sep 12 &middot; synthesis and soil</span>
+        <h3>Soil, not firm</h3>
+        <p>RegenHub is substrate: coworking revenue is maintenance, and the living value grows in ventures the cooperative holds relationships to. Goodhart's law named the standing design constraint.</p>
+        <p class="cf"><b>carried</b>Soil, not firm, still governs the accounting.</p>
+      </div>
+      <div class="mtg rv" style="--tint:var(--amber)">
+        <span class="mn">04 &middot; Sep 19 &middot; community reinvestment</span>
+        <h3>What to do with surplus, decided while broke</h3>
+        <p>Offered dividend checks or grants to community projects, the group chose grants: revenue paves the roads. Membership settled as orientation over output.</p>
+        <p class="cf"><b>carried</b>Reinvestment over distribution is the patronage plan's spine.</p>
+      </div>
+    </div>
+    <p class="actpull rv">The group decided what to do with a surplus it did not yet have. That may be the most cooperative act in the whole archive.<span class="who">the steward's note</span></p>
+  </div>
+</section>
+
+<section class="view sec" id="act2" data-tint="amber" data-title="act ii &middot; purpose and protocols">
+  <div class="frame view-inner">
+    <div class="addr rv">act ii &middot; september to october 2025</div>
+    <h2 class="rv">Purpose and protocols</h2>
+    <p class="actlede rv">Three meetings in which the theory got wilder, the structure got simpler, and the first neighbor projects came to show what the soil could grow.</p>
+    <div class="mtgrid g3">
+      <div class="mtg rv" style="--tint:var(--amber)">
+        <span class="mn">05 &middot; Sep 26 &middot; post-capitalist protocols</span>
+        <h3>The widest aperture</h3>
+        <p>An afternoon past capitalism: mutual staking, credit anyone can issue, three capital pools echoing the first meeting's rings. Not all of it survived the filing deadline; all of it shaped what the cooperative refuses to become.</p>
+        <p class="cf"><b>carried</b>The three pools are a proposed treasury dimension: what funded what stays a query, not a mystery.</p>
+      </div>
+      <div class="mtg rv" style="--tint:var(--amber)">
+        <span class="mn">06 &middot; Sep 26 &middot; implementation afternoon</span>
+        <h3>Simplified by evening</h3>
+        <p>The same day, theory traded for shipping: membership collapsed to three honest tiers, the website updated before the night ended. Genius traced to its origin, a household guardian spirit; scenius heard as a return, not an invention.</p>
+        <p class="cf"><b>carried</b>The three tiers still stand, recorded now as agreements with versions and standing.</p>
+      </div>
+      <div class="mtg rv" style="--tint:var(--coral)">
+        <span class="mn">07 &middot; Oct 3 &middot; revenets and revenue sharing</span>
+        <h3>Trust before tools</h3>
+        <p>The first visiting gardeners: a neighborhood-building program across a hundred-plus stewards, carrying a principle adopted on contact: technology must follow relationship, never lead it.</p>
+        <p class="cf"><b>carried</b>Trust before tools became the quiet law of the commons build.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="view sec" id="act3" data-tint="coral" data-title="act iii &middot; counsel and the split">
+  <div class="frame view-inner">
+    <div class="addr rv">act iii &middot; october to december 2025</div>
+    <h2 class="rv">Counsel and the split</h2>
+    <p class="actlede rv">Four meetings in which an outside practice held up a mirror, a lawyer posed the hard question, and the group answered by becoming two things instead of one.</p>
+    <div class="mtgrid g4">
+      <div class="mtg rv" style="--tint:var(--coral)">
+        <span class="mn">08 &middot; Oct 10 &middot; projects and place</span>
+        <h3>Admin as power center</h3>
+        <p>Every organization holds three irreducible administrative functions: accounting, finance, legal, ordinarily opaque centers of control. For a cooperative, transparency there is where values are embodied or undermined.</p>
+        <p class="cf"><b>carried</b>The Common Information System is that observation, built: the administrative center made into glass.</p>
+      </div>
+      <div class="mtg rv" style="--tint:var(--coral)">
+        <span class="mn">09 &middot; Nov 21 &middot; legal consultation</span>
+        <h3>The mirror of counsel</h3>
+        <p>Jeff Pote asked the questions that form entities: board fracture, provisional membership, the taxation fork. The group named a new species for itself: a venture commons.</p>
+        <p class="cf"><b>carried</b>The annual report is becoming a projection of the record itself.</p>
+      </div>
+      <div class="mtg rv" style="--tint:var(--rose)">
+        <span class="mn">10 &middot; Nov 28 &middot; partnership vs corporation</span>
+        <h3>Two entities, one intention</h3>
+        <p>The fork resolved: a partnership of real persons holding the space and the lease now; a cooperative of organizations, the venture studio, later, when the ventures justify it. Let the structure follow the life.</p>
+        <p class="cf"><b>carried</b>The partnership is filed and real; the studio stays honestly marked anticipated.</p>
+      </div>
+      <div class="mtg rv" style="--tint:var(--rose)">
+        <span class="mn">11 &middot; Dec 12 &middot; formation and strategy</span>
+        <h3>From deliberation to deadline</h3>
+        <p>File by end of January; present at the February gathering. And one phrase stopped the room: the collective intelligence that emerges when culturally aligned people share sustained proximity.</p>
+        <p class="cf"><b>carried</b>That sentence is in the filed articles. It is why this room exists tonight.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="view sec" id="act4" data-tint="rose" data-title="act iv &middot; two languages and the vessel">
+  <div class="frame view-inner">
+    <div class="addr rv">act iv &middot; january to february 2026</div>
+    <h2 class="rv">Two languages and the vessel</h2>
+    <p class="actlede rv">Four meetings in which the cooperative learned to speak twice, held its nerve through the crunch, and was born on a Friday.</p>
+    <div class="mtgrid g4">
+      <div class="mtg rv" style="--tint:var(--rose)">
+        <span class="mn">12 &middot; Jan 16 &middot; expansion, grants, education</span>
+        <h3>Fluent in both</h3>
+        <p>Speak the language of capitalism, desks and infrastructure, and the language of public benefit, stewardship and regenerative public goods, and let everyone here be fluent in both.</p>
+        <p class="cf"><b>carried</b>Two languages, one record: the same figures read honestly in either tongue.</p>
+      </div>
+      <div class="mtg rv" style="--tint:var(--rose)">
+        <span class="mn">13 &middot; Jan 23 &middot; finalization</span>
+        <h3>Twenty-three minutes in the crunch</h3>
+        <p>The shortest meeting in the archive, held in the thick of event preparation. Brand work consciously deferred: the community's bandwidth was fully spoken for, and the group said so instead of pretending otherwise.</p>
+        <p class="cf"><b>carried</b>Naming capacity honestly became a habit the status marks now enforce.</p>
+      </div>
+      <div class="mtg rv" style="--tint:var(--violet)">
+        <span class="mn">14 &middot; Jan 30 &middot; status, data, third floor</span>
+        <h3>An information right</h3>
+        <p>Days from filing, the conversation reached a century out: alongside the housing right, an information right; the building spoken aloud as information infrastructure committed a hundred years.</p>
+        <p class="cf"><b>carried</b>The walkaway rehearsal runs weekly: the record can stand up on fresh ground, byte for byte.</p>
+      </div>
+      <div class="mtg rv" style="--tint:var(--violet)">
+        <span class="mn">15 &middot; Feb 6 &middot; the birth of the vessel</span>
+        <h3>Filed</h3>
+        <p>The articles filed with Colorado; RegenHub became an LCA and public benefit entity, six months to the season after the first meeting. The facilitator recognized as Ventures and Operations Steward; Techne stepped forward as the first named initiative.</p>
+        <p class="cf"><b>carried</b>Its question is now the standing question: what do you intend to cultivate here, and what reciprocity flows back?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="view sec" id="ikigai" data-tint="coral" data-title="the role that emerged">
+  <div class="frame view-inner">
+    <div class="addr rv">interlude &middot; the role that emerged</div>
     <h2 class="rv">Kevin asked me about my ikigai</h2>
     <div class="ikigai-row">
       <svg class="ikigai-svg rv" viewBox="0 0 380 340" role="img" aria-label="Four overlapping circles: what I love, what I am good at, what the world needs, what sustains me. The steward's role sits at the center.">
@@ -343,18 +490,18 @@
         <text x="190" y="180" text-anchor="middle" class="core">the steward's role</text>
       </svg>
       <div>
-        <p class="lede rv">A pattern for asking what your felt purpose is leading you toward, and how to apply your full self to it. Kevin's question let me craft the steward's role at the intersection of my own ground: an information technologist who found it hard to articulate what he does, why it matters, and who it serves.</p>
+        <p class="lede rv">A pattern for asking what your felt purpose is leading you toward, and how to apply your full self to it. Kevin's question let me craft the role Meeting 15 would recognize as Ventures and Operations Steward, at the intersection of my own ground: an information technologist who found it hard to articulate what he does, why it matters, and who it serves.</p>
         <div class="pull rv">The system I could never quite describe about my own work is the one I built so the cooperative would never have that problem.<span class="who">the steward, first partially compensated member of the cooperative</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="view sec" id="commons" data-tint="rose" data-title="iv &middot; five months of building">
+<section class="view sec" id="commons" data-tint="rose" data-title="five months of building">
   <div class="frame view-inner">
-    <div class="addr rv">iv &middot; five months of building</div>
+    <div class="addr rv">epilogue &middot; five months of building</div>
     <h2 class="rv">The Commons, counted</h2>
-    <p class="lede rv">The Common Information System: the cooperative's book of record, and the interface through which it operates itself. Built in the open, one packet at a time. Its shape makes a staircase:</p>
+    <p class="lede rv">Meeting 08 observed that the administrative center is where values are embodied or undermined. The Common Information System is that observation, built: the center made into glass, one packet at a time, in the open. Its shape makes a staircase:</p>
     <div class="stair rv" role="img" aria-label="A rising staircase: 1 year, 2 Programs, 3 doors, 4 slices, 6 Primitives, 7 gates, 10 principles, 11 laws">
       <div class="step" style="--v:9"><span class="n" data-count="1">1</span><div class="bar"></div><span class="l">year of formation</span></div>
       <div class="step" style="--v:18"><span class="n" data-count="2">2</span><div class="bar"></div><span class="l">principal Programs</span></div>
@@ -369,9 +516,9 @@
   </div>
 </section>
 
-<section class="view sec" id="composition" data-tint="violet" data-title="v &middot; two initiatives, one composition">
+<section class="view sec" id="composition" data-tint="violet" data-title="two initiatives, one composition">
   <div class="frame view-inner">
-    <div class="addr rv">v &middot; two initiatives, one composition</div>
+    <div class="addr rv">two initiatives, one composition</div>
     <h2 class="rv">An orchestra, not a soloist</h2>
     <div class="score rv" role="img" aria-label="Two smaller waves, RegenHub and Techne, combine into one larger wave labeled the composition">
       <svg viewBox="0 0 900 190">
@@ -393,13 +540,13 @@
         <p>Placemaking intentionality carried into virtual space. A co-op of many crafts: the art, craft, and science of practice.</p>
       </div>
     </div>
-    <p class="cap rv">Fields coordinated with one another compound the way an orchestra compounds: no instrument group sounds complete alone. The Commons exists so composition can be seen, valued, and shared honestly.</p>
+    <p class="cap rv">Fields coordinated with one another compound the way an orchestra compounds: no instrument group sounds complete alone. Soil, not firm; and of every venture the soil grows, the standing question from Meeting 15: what do you intend to cultivate here, and what reciprocity flows back?</p>
   </div>
 </section>
 
-<section class="view sec" id="doors" data-tint="twilight" data-title="vi &middot; tonight's demonstration">
+<section class="view sec" id="doors" data-tint="twilight" data-title="tonight's demonstration">
   <div class="frame view-inner">
-    <div class="addr rv">vi &middot; tonight's demonstration</div>
+    <div class="addr rv">tonight's demonstration</div>
     <h2 class="rv">Do not take my word for any of this</h2>
     <p class="lede rv">One authoritative record, three doors, all open tonight.</p>
     <div class="doorrow">
@@ -422,8 +569,8 @@
         <a href="https://techne.coop/commons/build/">techne.coop/commons/build/</a>
       </div>
     </div>
-    <p class="cap rv">A year ago we organized around a lease because it was true. Tonight we ratify something larger that stayed true the whole way.</p>
-    <p class="tail rv">the steward's telling &middot; drafted by Nou from voice notes of 2026-07-27, every date from the record &middot; the fall meeting log is held open for the steward's own hand; the LLC that held the lease is confirmed before this is spoken aloud &middot; RegenHub, LCA &middot; Boulder, Colorado</p>
+    <p class="cap rv">A year ago we organized around a lease because it was true. The dialogue you have just paged through did not end; it changed medium. If you are in the room tonight, you are standing in the soil this story described, and the next chapter of the record has a place for what you carry.</p>
+    <p class="tail rv">the steward's telling &middot; drafted from the LCA Formation Meeting archives 01 through 15 and the steward's voice notes of 2026-07-27, every date from the record &middot; told without speaker attribution, following the archives' convention; the carried lines are the steward's, offered for the room's correction &middot; RegenHub, LCA &middot; Boulder, Colorado</p>
   </div>
 </section>
 

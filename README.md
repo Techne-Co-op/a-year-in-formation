@@ -14,3 +14,10 @@ before the page is spoken aloud.
 
 Drafted by Nou from the steward's voice notes of 2026-07-27. Every date is
 from the record.
+
+## Source
+
+`source/the-formation-year.html` is the steward's long-form scrollable telling,
+drafted from the LCA Formation Meeting archives 01 through 15. The paged deck
+in `index.html` is woven from it. The long form keeps the full prose of every
+meeting; the deck carries the condensed telling.
