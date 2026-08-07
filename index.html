@@ -131,7 +131,7 @@
   /* slide 3 · the horizontal year */
   .hyear{position:relative; margin-top:clamp(18px,4vh,40px)}
   .hyear .rail{position:absolute; left:2%; right:2%; top:50%; height:2px; background:var(--rule)}
-  .hgrid{display:grid; grid-template-columns:repeat(8,1fr); position:relative; min-height:clamp(230px,42vh,330px)}
+  .hgrid{display:grid; grid-template-columns:repeat(8,1fr); position:relative; min-height:clamp(250px,52vh,430px)}
   .hbeat{position:relative; padding:0 6px; display:flex; flex-direction:column; justify-content:flex-end; text-align:center}
   .hbeat:nth-child(even){justify-content:flex-start}
   .hbeat .node{position:absolute; left:50%; top:50%; width:12px; height:12px; transform:translate(-50%,-50%); background:var(--bg); border:2px solid var(--tint,var(--ember)); border-radius:1px; z-index:1}
@@ -143,6 +143,15 @@
   .hbeat p{font:400 clamp(10.5px,.95vw,12px)/1.5 var(--serif); color:var(--muted)}
   .hbeat.await h3{color:var(--muted); font-style:italic}
   .hbeat.await .hold{font:400 9.5px var(--mono); color:var(--warn); letter-spacing:.06em}
+  .hlabels{display:grid; grid-template-columns:repeat(8,1fr); margin-bottom:14px}
+  .hlabels span{grid-row:1; font:500 9.5px var(--mono); letter-spacing:.14em; text-transform:uppercase; text-align:center; padding-bottom:7px; border-bottom:1px dashed var(--rule)}
+  .hlabels .la{grid-column:1/5; color:var(--ember-text); margin-right:10px}
+  .hlabels .lb{grid-column:5/9; color:var(--faint); margin-left:10px}
+  .hbeat.act .node{width:17px; height:17px; background:var(--tint,var(--ember))}
+  .hbeat.act .when{font-size:10.5px}
+  .hbeat.act h3{font-size:clamp(14px,1.4vw,17.5px)}
+  .hbeat .go{display:inline-block; margin-top:4px; font:500 9px var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--tint,var(--ember-text))}
+  .hbeat .go:hover{text-decoration:underline}
 
   /* slide 4 · ikigai */
   .ikigai-row{display:grid; grid-template-columns:minmax(0,4fr) minmax(0,5fr); gap:clamp(24px,4vw,60px); align-items:center; margin-top:8px}
@@ -235,6 +244,7 @@
     .mtgrid.g4,.mtgrid.g3{grid-template-columns:1fr}
     .mtg .cf{margin-top:7px}
     .hyear .rail{display:none}
+    .hlabels{display:none}
     .hgrid{grid-template-columns:1fr; min-height:0; gap:14px}
     .hbeat{text-align:left; padding:0; justify-content:flex-start}
     .hbeat .node{display:none}
@@ -297,29 +307,30 @@
   </div>
 </section>
 
-<section class="view sec" id="dialogue" data-tint="amber" data-title="ii &middot; the year of dialogue">
+<section class="view sec" id="dialogue" data-tint="amber" data-title="ii &middot; year of dialogue">
   <div class="frame view-inner">
-    <div class="addr rv">ii &middot; the year of dialogue</div>
-    <h2 class="rv">What a year of meetings actually made</h2>
-    <p class="lede rv">Fifteen meetings from the first Friday of August to the first Friday of February, then six months of tending. Four acts, told meeting by meeting on the pages that follow.</p>
+    <div class="addr rv">ii &middot; year of dialogue</div>
+    <h2 class="rv">Year of Dialogue</h2>
+    <p class="lede rv">Fifteen meetings from the first Friday of August to the first Friday of February, told in four acts on the pages that follow; then six months of tending, until this room.</p>
     <div class="hyear rv">
+      <div class="hlabels" aria-hidden="true"><span class="la">the four acts &middot; fifteen meetings</span><span class="lb">the tending &middot; six months</span></div>
       <div class="rail" aria-hidden="true"></div>
       <div class="hgrid">
-        <div class="hbeat" style="--tint:var(--gold)">
+        <div class="hbeat act" style="--tint:var(--gold)">
           <span class="node" aria-hidden="true"></span>
-          <div class="cell"><span class="when">Aug 8, 2025</span><h3>Meeting 01</h3><p>the why and the what; the container question opens</p></div>
+          <div class="cell"><span class="when">Act I &middot; Aug&ndash;Sep 2025</span><h3>The gift and the ground</h3><p>the why; scenius arrives; soil, not firm</p><a class="go" href="#act1">meetings 01&ndash;04 &rarr;</a></div>
         </div>
-        <div class="hbeat" style="--tint:var(--gold)">
+        <div class="hbeat act" style="--tint:var(--amber)">
           <span class="node" aria-hidden="true"></span>
-          <div class="cell"><span class="when">Sep 2025</span><h3>The gift and the ground</h3><p>scenius arrives; soil, not firm</p></div>
+          <div class="cell"><span class="when">Act II &middot; Sep&ndash;Oct 2025</span><h3>Purpose and protocols</h3><p>three honest tiers; trust before tools</p><a class="go" href="#act2">meetings 05&ndash;07 &rarr;</a></div>
         </div>
-        <div class="hbeat" style="--tint:var(--coral)">
+        <div class="hbeat act" style="--tint:var(--coral)">
           <span class="node" aria-hidden="true"></span>
-          <div class="cell"><span class="when">Nov 2025</span><h3>Counsel and the split</h3><p>the mirror of counsel; a venture commons</p></div>
+          <div class="cell"><span class="when">Act III &middot; Oct&ndash;Dec 2025</span><h3>Counsel and the split</h3><p>the mirror of counsel; a venture commons</p><a class="go" href="#act3">meetings 08&ndash;11 &rarr;</a></div>
         </div>
-        <div class="hbeat" style="--tint:var(--rose)">
+        <div class="hbeat act" style="--tint:var(--rose)">
           <span class="node" aria-hidden="true"></span>
-          <div class="cell"><span class="when">Feb 6, 2026</span><h3>Meeting 15 &middot; filed</h3><p>RegenHub becomes an LCA; the vessel is born</p></div>
+          <div class="cell"><span class="when">Act IV &middot; Jan&ndash;Feb 2026</span><h3>Two languages and the vessel</h3><p>fluent in both tongues; filed Feb 6</p><a class="go" href="#act4">meetings 12&ndash;15 &rarr;</a></div>
         </div>
         <div class="hbeat" style="--tint:var(--rose)">
           <span class="node" aria-hidden="true"></span>
